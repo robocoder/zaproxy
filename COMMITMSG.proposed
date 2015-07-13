@@ -1,0 +1,60 @@
+WIP - Add SOCKS proxy support (#29)
+
+* add HttpClient 4.5
+* add HttpCore 4.4.1
+
+TODO:
+
+* remove unnecessary jars introduced by above
+* remove these?
+  * src/org/apache/commons/httpclient/HttpMethodBase.java     
+  * src/org/apache/commons/httpclient/HttpMethodDirector.java
+* resolve jar updates
+  * commons-codec (1.4 -> 1.9)
+  * commons-logging (1.1.1 -> 1.2)
+* actually add SOCKS proxy support
+* see https://github.com/OWASP/OWASP-Proxy (LGPL); note: no .jars
+
+PROPOSED SCOPE OF CHANGES:
+
+https://www.owasp.org/index.php/GSoC2013_Ideas#OWASP_ZAP:_SOCKS_support
+ 
+Extend ZAP to act as an intercepting proxy for SOCKS 4 and 5.
+ 
+Brief explanation:
+ 
+Suggested phases include:
+ 
+Identifying suitable Java SOCKS libraries
+Evaluating the SOCKS support other security tools provide (eg Mallory and Burp)
+Enhance ZAP to provide an option to use SOCKS for all outgoing connections
+Enhance ZAP to act as invisible SOCKS proxy
+Display the SOCKS data in ZAP
+Support searching of SOCKS data
+Support breaking and changing the data manually
+Support fuzzing SOCKS data
+Support SOCKS authentication
+The ZAP WebSockets addon should be used as an indication of how this could be achieved both technically and visually, but should not limit the implementation.
+ 
+Each phase should be tested against 3rd party tools which use SOCKS and include stand alone unit tests.
+ 
+Expected results:
+ 
+ZAP will be able to act as a SOCKS proxy, displaying the data sent and allowing it to be intercepted and changed.
+ 
+The code should be:
+ 
+Clean and easy to follow
+Include a full set of unit tests
+Include good documentation
+Knowledge Prerequisite:
+
+ 
+https://groups.google.com/forum/#!searchin/zaproxy-develop/socks/zaproxy-develop/TJU3zuzkUFw/_F5fS8PoJLcJ
+ 
+The first usable phase could be implemented by something like:
+Enhance ZAP to start a SOCKS proxy on a specified port
+Make sure SOCKS traffic is transparently proxied
+Display SOCKS traffic summary in a new tab (as per the History and Web Sockets tabs)
+Allow SOCKS traffic details to be displayed in the Request and Response tabs
+Support intercepting and changing of SOCKS traffic
